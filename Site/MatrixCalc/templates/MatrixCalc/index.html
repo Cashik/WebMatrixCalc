@@ -1,0 +1,112 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="{% static 'MatrixCalc/css/style.css' %}"/>
+    <script src="{% static 'MatrixCalc/scripts/MatrixCalcScript.js' %}"></script>
+</head>
+
+<body>
+
+<div class="container">
+    <h1 class="page-header">
+        Веб-калькулятор матриц
+    </h1>
+    <div class="page-body">
+        <form class="form" action="" method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <label for="MatrixWidth" class="col-sm-8">
+                    Исходная матрица:
+                </label>
+                <div class="col-sm-2 text-right">
+                    Высота:
+                    <input id="MatrixHeight" name="MatrixHeight" type="number" value="3" onchange="tablesRefresh()"
+                           style="width: 30px">
+                </div>
+                <div class="col-sm-2 text-right">
+                    Ширина:
+                    <input id="MatrixWidth" name="MatrixWidth" type="number" value="3" onchange="tablesRefresh()"
+                           style="width: 30px">
+                </div>
+            </div>
+            <br>
+            <div id="FirstMatrix">
+            </div>
+            <hr>
+            <div class="form-group">
+                <label for="operation">Укажите операцию:</label>
+                <select class="form-control" id="operation" name="operation">
+                    <option href="#matrix_operand">Сложение матриц</option>
+                    <option href="#matrix_operand">Вычитание матриц</option>
+                    <option href="#matrix_operand">Умножение матриц</option>
+                    <option href="#matrix_number">Умножение матрицы на число</option>
+                    <option href="#matrix_number">Возведение матрицы в степень</option>
+                    <option>Найти определитель</option>
+                    <option>Транспонирование</option>
+                </select>
+            </div>
+            <hr>
+            <div class="tab-content">
+                <div id="matrix_operand" class="tab-pane fade in active">
+                    <div class="row">
+                        <label for="SecondMatrixWidth" class="col-sm-8">
+                            Матрица-операнд:
+                        </label>
+                        <div class=" text-right hidden">
+                            Высота:
+                            <input id="SecondMatrixHeight" name="SecondMatrixHeight" type="number" value="3"
+                                    style="width: 30px">
+                        </div>
+                        <div class="col-sm-4 text-right SecondMatrixWidthDiv">
+                            Ширина:
+                            <input id="SecondMatrixWidth" name="SecondMatrixWidth" type="number" value="3"
+                                   onchange="tablesRefresh()"
+                                   style="width: 30px">
+                        </div>
+                    </div>
+
+                    <br>
+                    <div id="SecondMatrix">
+                    </div>
+                </div>
+                <div id="matrix_number" class="tab-pane fade">
+                    <label for="SecondMatrix">
+                        Второй операнд:
+                    </label>
+                    <input type="number" id="SecondNumber" name="number_operand" value="2">
+                </div>
+            </div>
+            <hr>
+            <button type="submit" class="btn btn-success btn-block btn-lg">Посчитать</button>
+            <hr>
+            <div id="answer">
+                <label for="AnswerMatrix" class="col-sm-12">
+                    Результирующая матрица:
+                </label>
+                <br>
+                <div id="AnswerMatrix">
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+</body>
+
+</html>
