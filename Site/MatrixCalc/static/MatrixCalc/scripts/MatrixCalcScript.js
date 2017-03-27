@@ -49,7 +49,9 @@ function tablesRefresh() {
                     }
                         break;
                 }
-
+            } else if (operation.find("option:selected").val() === "Транспонирование" && matrix.attr('id') == "AnswerMatrix") {
+                lw = fmh;
+                lh = fmw;
             } else {
                 $('.SecondMatrixWidthDiv').addClass("hidden");
                 lw = fmw;
@@ -72,18 +74,20 @@ function tablesRefresh() {
             matrix.append(tbl);
 
         }
-    );
+    )
+    ;
 }
 
 function fillAnswerTable(table) {
 
-    var lw, lh;
     console.log(table);
     for (var i = 0; i < table.length; i++) {
-        for (var j = 0; j < table.length; j++) {
+        for (var j = 0; j < table[i].length; j++) {
             console.log('#AnswerMatrix:' + i + '_' + j);
-            var a = $("[name = 'AnswerMatrix:" + i + '_' + j+"'");
+            var a = $("[name = 'AnswerMatrix:" + i + '_' + j + "'");
             a.val(table[i][j]);
+            console.log(table[i][j]);
+
         }
     }
 
@@ -107,7 +111,13 @@ $(function () {
             context: this,
             dataType: 'json',
             success: [function (data) {
-                fillAnswerTable(data.table);
+                if (operation.find("option:selected").val() === "Найти определитель") {
+                    $("#det_answer").html(data.answer);
+                    $("#detModal").modal();
+                } else {
+                    fillAnswerTable(data.answer);
+                }
+
             }]
         });
     });

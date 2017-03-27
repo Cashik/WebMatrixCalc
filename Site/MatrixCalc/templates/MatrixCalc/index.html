@@ -56,7 +56,6 @@
                     <option href="#matrix_operand">Вычитание матриц</option>
                     <option href="#matrix_operand">Умножение матриц</option>
                     <option href="#matrix_number">Умножение матрицы на число</option>
-                    <option href="#matrix_number">Возведение матрицы в степень</option>
                     <option>Найти определитель</option>
                     <option>Транспонирование</option>
                 </select>
@@ -68,10 +67,10 @@
                         <label for="SecondMatrixWidth" class="col-sm-8">
                             Матрица-операнд:
                         </label>
-                        <div class=" text-right hidden">
+                        <div class="text-right hidden">
                             Высота:
                             <input id="SecondMatrixHeight" name="SecondMatrixHeight" type="number" value="3"
-                                    style="width: 30px">
+                                   style="width: 30px">
                         </div>
                         <div class="col-sm-4 text-right SecondMatrixWidthDiv">
                             Ширина:
@@ -95,7 +94,7 @@
             <hr>
             <button type="submit" class="btn btn-success btn-block btn-lg">Посчитать</button>
             <hr>
-            <div id="answer">
+            <div id="result_matrix">
                 <label for="AnswerMatrix" class="col-sm-12">
                     Результирующая матрица:
                 </label>
@@ -103,6 +102,46 @@
                 <div id="AnswerMatrix">
                 </div>
             </div>
+
+            <!-- Modal -->
+            <div id="errorModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Ошибка</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Some text in the modal.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- Modal -->
+            <div id="detModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Значение определителя матрицы</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p id="det_answer">Some text in the modal.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
 
         </form>
     </div>
