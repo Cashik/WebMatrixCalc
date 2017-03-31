@@ -1,8 +1,10 @@
+// глобальные переменные для содержания текщих размеров матриц
 var fmw = $("#MatrixWidth").val(),
     fmh = $("#MatrixHeight").val(),
     smh = $("#SecondMatrixWidth").val(),
     smw = $("#MatrixWidth").val();
 
+// функия обновления глобальных переменных размеров матриц
 function UpdateMatrixsSizes() {
     fmw = $("#MatrixWidth").val();
     fmh = $("#MatrixHeight").val();
@@ -10,13 +12,19 @@ function UpdateMatrixsSizes() {
     smh = $("#SecondMatrixHeight").val();
 }
 
+// функция, которая обновляет все матрицы веб-страницы
 function tablesRefresh() {
+    // массив из матриц, которые нужно обновить
     var matrixs = [$("#FirstMatrix"), $("#SecondMatrix"), $("#AnswerMatrix")];
 
+    // обновляем значение элемента высоты второй матрицы
+    // это значение всегда равно значению высоты первой матрицы
+    // но обновляется, для читабельноти кода
     $("#SecondMatrixHeight").val($("#MatrixWidth").val());
 
     UpdateMatrixsSizes();
 
+    // цикл по каждой их матриц
     matrixs.forEach(function (matrix, i, arr) {
             var tbl = document.createElement('table'),
                 lw, lh;
@@ -25,8 +33,6 @@ function tablesRefresh() {
             tbl.classList.add("table");
             tbl.classList.add("table-bordered");
 
-            // если выбрана операция умножения, то следует поменять кол строи и столбцов местами
-            // для следующей матрицы
             console.log(matrix.attr('id'));
             operation = $('#operation');
             if (operation.find("option:selected").val() === "Умножение матриц") {
@@ -50,6 +56,7 @@ function tablesRefresh() {
                         break;
                 }
             } else if (operation.find("option:selected").val() === "Транспонирование" && matrix.attr('id') == "AnswerMatrix") {
+                $('.SecondMatrixWidthDiv').addClass("hidden");
                 lw = fmh;
                 lh = fmw;
             } else {
@@ -83,24 +90,28 @@ function fillAnswerTable(table) {
     console.log(table);
     for (var i = 0; i < table.length; i++) {
         for (var j = 0; j < table[i].length; j++) {
-            console.log('#AnswerMatrix:' + i + '_' + j);
-            var a = $("[name = 'AnswerMatrix:" + i + '_' + j + "'");
-            a.val(table[i][j]);
-            console.log(table[i][j]);
-
+            $("[name = 'AnswerMatrix:" + i + '_' + j + "'").val(table[i][j]);
         }
     }
 
 }
-
+/* то же, что и  $( document ).ready(function() {});
+ т.е функция, которая выполнится после полной загрузки страницы */
 $(function () {
     tablesRefresh();
+    $('.tableSizeInput').on('change', function () {
+        tablesRefresh()
+    });
+
     $('#operation').on('change', function () {
-        var selectedTabId = $(this).find("option:selected").attr("href");
+        // делаем все блоки ввода невидимыми
         $(".in").removeClass("in active");
+        // делаем видимым только тот блок, id которого указанно в выбранной опции
+        var selectedTabId = $(this).find("option:selected").attr("href");
         $(selectedTabId).addClass("in active");
         tablesRefresh()
     });
+
 
     $(document).on('submit', '.form', function (e) {
         e.preventDefault();

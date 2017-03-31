@@ -1,22 +1,19 @@
+<!-- Подключение шаблонного тега Static -->
 {% load static %}
-
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
-    <!-- Latest compiled and minified CSS -->
+    <title>Matrix Calculator</title>
+
+    <!-- Подключение Bootstrap 3 и его компонентов -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-    <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
-    <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-
+    <!-- Подключение статических файлов -->
     <link rel="stylesheet" type="text/css" href="{% static 'MatrixCalc/css/style.css' %}"/>
     <script src="{% static 'MatrixCalc/scripts/MatrixCalcScript.js' %}"></script>
 </head>
@@ -36,12 +33,12 @@
                 </label>
                 <div class="col-sm-2 text-right">
                     Высота:
-                    <input id="MatrixHeight" name="MatrixHeight" type="number" value="3" onchange="tablesRefresh()"
+                    <input class="tableSizeInput" id="MatrixHeight" name="MatrixHeight" type="number" value="3"
                            style="width: 30px">
                 </div>
                 <div class="col-sm-2 text-right">
                     Ширина:
-                    <input id="MatrixWidth" name="MatrixWidth" type="number" value="3" onchange="tablesRefresh()"
+                    <input class="tableSizeInput" id="MatrixWidth" name="MatrixWidth" type="number" value="3"
                            style="width: 30px">
                 </div>
             </div>
@@ -74,8 +71,8 @@
                         </div>
                         <div class="col-sm-4 text-right SecondMatrixWidthDiv">
                             Ширина:
-                            <input id="SecondMatrixWidth" name="SecondMatrixWidth" type="number" value="3"
-                                   onchange="tablesRefresh()"
+                            <input class="tableSizeInput" id="SecondMatrixWidth" name="SecondMatrixWidth" type="number" value="3"
+
                                    style="width: 30px">
                         </div>
                     </div>
@@ -106,7 +103,6 @@
             <!-- Modal -->
             <div id="errorModal" class="modal fade" role="dialog">
                 <div class="modal-dialog">
-
                     <!-- Modal content-->
                     <div class="modal-content">
                         <div class="modal-header">
