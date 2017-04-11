@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 def MatrixsSum(first_matrix, second_matrix):
     return [[first_matrix[i][j] + second_matrix[i][j] for j in range(0, len(first_matrix[i]))]
             for i in range(0, len(first_matrix))]
