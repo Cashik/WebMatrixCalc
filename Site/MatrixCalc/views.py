@@ -2,7 +2,6 @@
 
 from django.http import JsonResponse
 from django.shortcuts import render
-from setuptools.compat import unicode
 
 from MatrixCalc.Matrix import *
 
@@ -24,17 +23,17 @@ def index(request):
                 sm[i].append(int(request.POST.get('SecondMatrix:' + str(i) + '_' + str(j), 0)))
         answer = 0
         # использование методов матричного модуля
-        if unicode(operation) == u"Сложение матриц":
+        if (operation) == u"Сложение матриц":
             answer = MatrixsSum(fm, sm)
-        elif unicode(operation)== u"Вычитание матриц":
+        elif (operation)== u"Вычитание матриц":
             answer = MatrixsSub(fm, sm)
-        elif unicode(operation) == u"Умножение матриц":
+        elif (operation) == u"Умножение матриц":
             answer = MatrixsMult(fm, sm)
-        elif unicode(operation) == u"Умножение матрицы на число":
+        elif (operation) == u"Умножение матрицы на число":
             answer = MatrixMultNumber(fm, number)
-        elif unicode(operation) == u"Найти определитель":
+        elif (operation) == u"Найти определитель":
             answer = MatrixDeterminant(fm)
-        elif unicode(operation) == u"Транспонирование":
+        elif (operation) == u"Транспонирование":
             answer = TransposeMatrix(fm)
         # возвращение результата в формате json
         return JsonResponse({'answer': answer})
