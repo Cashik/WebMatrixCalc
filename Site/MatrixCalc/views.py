@@ -22,17 +22,17 @@ def index(request):
                 sm[i].append(int(request.POST.get('SecondMatrix:' + str(i) + '_' + str(j), 0)))
         answer = 0
         # использование методов матричного модуля
-        if operation == "Сложение матриц":
+        if operation == u"Сложение матриц":
             answer = MatrixsSum(fm, sm)
-        elif operation == "Вычитание матриц":
+        elif operation == u"Вычитание матриц":
             answer = MatrixsSub(fm, sm)
-        elif operation == "Умножение матриц":
+        elif operation == u"Умножение матриц":
             answer = MatrixsMult(fm, sm)
-        elif operation == "Умножение матрицы на число":
+        elif operation == u"Умножение матрицы на число":
             answer = MatrixMultNumber(fm, number)
-        elif operation == "Найти определитель":
+        elif operation == u"Найти определитель":
             answer = MatrixDeterminant(fm)
-        elif operation == "Транспонирование":
+        elif operation == u"Транспонирование":
             answer = TransposeMatrix(fm)
         # возвращение результата в формате json
         return JsonResponse({'answer': answer})
