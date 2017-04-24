@@ -26,7 +26,7 @@ SECRET_KEY = '60u7p@h+&0zks9ty#7(fw$fy%_#vhw@=8dp78tjs5(#wyh%cq8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['Cashik2.pythonanywhere.com']
 
 
 # Application definition
